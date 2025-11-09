@@ -8,8 +8,10 @@ export default function App() {
   const [error, setError] = useState("");
   const [processingTime, setProcessingTime] = useState(0);
 
-  // Backend API URL
-  const API_BASE_URL = "http://127.0.0.1:8000";
+  // ✅ Use deployed backend on Render (fallback to localhost for local dev)
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE ||
+    "https://shl-assessment-recommendation-system-1-4b8u.onrender.com";
 
   const sampleQueries = [
     "I am hiring for Java developers who can also collaborate effectively with my business teams.",
@@ -44,7 +46,8 @@ export default function App() {
       setProcessingTime(Date.now() - startTime);
     } catch (err) {
       setError(
-        err.message || "Failed to fetch recommendations. Please check your API connection."
+        err.message ||
+          "Failed to fetch recommendations. Please check your API connection."
       );
     } finally {
       setLoading(false);
@@ -77,7 +80,9 @@ export default function App() {
           />
 
           <div className="mt-4">
-            <p className="text-sm font-medium text-gray-600 mb-2">Try a sample query:</p>
+            <p className="text-sm font-medium text-gray-600 mb-2">
+              Try a sample query:
+            </p>
             <div className="flex flex-wrap gap-2">
               {sampleQueries.map((sample, idx) => (
                 <button
@@ -204,4 +209,3 @@ export default function App() {
     </div>
   );
 }
-
