@@ -195,7 +195,7 @@ export default function App() {
               Ready to Find the Perfect Assessments
             </h3>
             <p className="text-gray-600">
-              Enter a job description or requirements above to get AI-powered assessment
+              Enter a job description or requirements above to get assessment
               recommendations.
             </p>
           </div>
